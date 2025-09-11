@@ -45,7 +45,52 @@ void testSearchTree() {
     tree.clear();
     cout << (tree.root == nullptr ? "Tree cleared" : "Tree not cleared") << endl;
 }
+void testDoubleLinkedlist() {
+    DoubleLinkedlist<int> list;
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    list.insertHead(0);
+    list.insertTail(4);
+    for (int i = 0; i < list.getSize(); i++) {
+        cout << list.getValue(i) << ", ";//0 1 2 3 4	
+    }
+    cout << endl;
+    list.clear();
+    list.addRange({ 5,6,7,8 });
+    list.insertAfter(9, list.getNode(3));//5 6 7 8 9
+    list.insertBefore(4, list.getNode(0));//4 5 6 7 8 9
+    list.removeAt(2);//4 5 7 8 9
+    list.add(9);//4 5 7 8 9 9
+    list.removeAll(9);//4 5 7 8
+    list.print();
+}
+void testSinglyLinkedList() {
+    SinglyLinkedList<int> list;
+    list.add(10);
+    list.add(20);
+    list.insertHead(5);
+    list.insertTail(30);
+    list.print();   // Output: 5, 10, 20, 30,
+
+    list.removeAt(1);
+    list.print();   // Output: 5, 20, 30,
+    list.removeAll(30);
+    list.print();   // Output: 5, 20,
+    list.addRange({ 40, 50, 60 });
+    list.print();   // Output: 5, 20, 40, 50, 60,
+    Node<int>* node = list.getNode(2);
+    list.insert(25, node);
+    list.print();   // Output: 5, 20, 40, 25, 50, 60,
+    list.remove(node);
+    list.print();   // Output: 5, 20, 25, 50, 60,
+    list.clear();
+    list.print();   // Output: (empty line)
+
+}
 int main() {
     testSearchTree();
+	testDoubleLinkedlist();
+    testSinglyLinkedList();
 
 }	
