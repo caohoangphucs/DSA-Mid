@@ -18,12 +18,15 @@
     <ClCompile Include="DSA Mid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="searchTree.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SinglyLinkedList.h">
+    <ClInclude Include="linkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

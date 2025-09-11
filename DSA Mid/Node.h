@@ -24,11 +24,11 @@ struct DNode {
 //For binary search tree
 template <typename T>
 struct TreeNode {
-    T data;
+    T value;
     TreeNode<T>* left;
     TreeNode<T>* right;
 
-    TreeNode() : data(T()), left(nullptr), right(nullptr) {}
-    TreeNode(const T& value) : data(value), left(nullptr), right(nullptr) {}
+    TreeNode() : value(T()), left(nullptr), right(nullptr) {}
+    TreeNode(const T& value) : value(value), left(nullptr), right(nullptr) {}
 };
 
