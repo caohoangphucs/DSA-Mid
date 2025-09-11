@@ -19,7 +19,7 @@ void testSearchTree() {
 
     // Kiểm tra tồn tại
     cout << "Has 12? " << (tree.has(12) ? "Yes" : "No") << endl;
-    cout << "Has 7? " << (tree.has(7) ? "Yes" : "No") << endl;
+    cout << "Has 7? " << (tree.has(7) ? "Yes" : "No") << endl   ;
 
     // Xóa node lá
     cout << "\nRemove leaf (20)...\n";
