@@ -89,8 +89,11 @@ void testSinglyLinkedList() {
 
 }
 int main() {
+    int temp;
     testSearchTree();
 	testDoubleLinkedlist();
     testSinglyLinkedList();
-
+    
+    
+    cin >> temp;
 }	
