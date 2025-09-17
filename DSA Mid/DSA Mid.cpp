@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "searchTree.h"
 #include "linkedList.h"
+#include "hashTable.h"
 using namespace std;
 void testSearchTree() {
     BinarySearchTree<int> tree;
@@ -88,9 +89,54 @@ void testSinglyLinkedList() {
     list.print();   // Output: (empty line)
 
 }
+
+void testHashTable() {
+    // Tạo bảng băm cho kiểu int
+    HashTable<int> ht;
+
+    // Thêm dữ liệu
+    ht.add("one", 1);
+    ht.add("two", 2);
+    ht.add("three", 3);
+
+    // Lấy và in ra
+    auto v1 = ht.getValue("one");
+    if (v1.has_value()) {
+        cout << "\"one\" = " << v1.value() << endl;
+    }
+    else {
+        cout << "\"one\" not found" << endl;
+    }
+
+    auto v2 = ht.getValue("two");
+    if (v2.has_value()) {
+        cout << "\"two\" = " << v2.value() << endl;
+    }
+    else {
+        cout << "\"two\" not found" << endl;
+    }
+
+    auto v3 = ht.getValue("three");
+    if (v3.has_value()) {
+        cout << "\"three\" = " << v3.value() << endl;
+    }
+    else {
+        cout << "\"three\" not found" << endl;
+    }
+
+    // Kiểm tra một key không tồn tại
+    auto v4 = ht.getValue("four");
+    if (v4.has_value()) {
+        cout << "\"four\" = " << v4.value() << endl;
+    }
+    else {
+        cout << "\"four\" not found" << endl;
+    }
+}
 int main() {
     testSearchTree();
 	testDoubleLinkedlist();
     testSinglyLinkedList();
+    testHashTable();
 
 }	
