@@ -52,10 +52,11 @@ void testDoubleLinkedlist() {
     cout << "=== Test Double Linked List ===" << endl;
     DoubleLinkedlist<int> list;
 
-    cout << "Adding values 1, 2, 3...\n";
+    cout << "Adding values 1,  3...\n";
     list.add(1);
-    list.add(2);
     list.add(3);
+    cout << "Insert 2 at index 1\n";
+	list.insert(2, 1); 
 
     cout << "Insert head (0) and tail (4)...\n";
     list.insertHead(0);
@@ -75,9 +76,11 @@ void testDoubleLinkedlist() {
     cout << "InsertAfter(9, node(3))...\n";
     list.insertAfter(9, list.getNode(3)); // 5 6 7 8 9
     list.print();
-
+	cout << "Remove(node(3))...\n";
+	list.remove(list.getNode(3)); 
+    
     cout << "InsertBefore(4, node(0))...\n";
-    list.insertBefore(4, list.getNode(0)); // 4 5 6 7 8 9
+    list.insertBefore(4, list.getNode(0));
     list.print();
 
     cout << "RemoveAt(2)...\n";
@@ -91,6 +94,7 @@ void testDoubleLinkedlist() {
     cout << "RemoveAll(9)...\n";
     list.removeAll(9);
     list.print();
+
 
     getline(cin, temp);
     system("cls");
