@@ -1,2 +1,5 @@
 ﻿  DSA Mid.cpp
-  DSA Mid.vcxproj -> C:\Users\LENOVO\Source\Repos\DSA-Mid\x64\Debug\DSA Mid.exe
+C:\Users\LENOVO\source\repos\DSA-Mid\DSA Mid\DSA Mid.cpp(143,6): error C2084: function 'void testHashTable(void)' already has a body
+      C:\Users\LENOVO\source\repos\DSA-Mid\DSA Mid\DSA Mid.cpp(93,6):
+      see previous definition of 'testHashTable'
+  
