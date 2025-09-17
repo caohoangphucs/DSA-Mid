@@ -15,7 +15,7 @@ struct Item {
         Item::value = value;
     }
 
-    Item() {}
+    Item() : hash(0), value(T{}) {}
 
 };
 template <typename T>
