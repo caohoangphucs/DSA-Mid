@@ -64,50 +64,55 @@ void testSearchTree() {
 void testDoubleLinkedlist() {
     cout << "=== Test Double Linked List ===" << endl;
     DoubleLinkedlist<int> list;
+    try {
 
-    cout << "Adding values 1,  3...\n";
-    list.add(1);
-    list.add(3);
-    cout << "Insert 2 at index 1\n";
-	list.insert(2, 1); 
+        cout << "Adding values 1,  3...\n";
+        list.add(1);
+        list.add(3);
+        cout << "Insert 2 at index 1\n";
+        list.insert(2, 1);
 
-    cout << "Insert head (0) and tail (4)...\n";
-    list.insertHead(0);
-    list.insertTail(4);
+        cout << "Insert head (0) and tail (4)...\n";
+        list.insertHead(0);
+        list.insertTail(4);
 
-    cout << "Current list: ";
-    for (int i = 0; i < list.getSize(); i++) {
-        cout << list.getValue(i) << ", ";
-    }
-    cout << endl;
+        cout << "Current list: ";
+        for (int i = 0; i < list.getSize(); i++) {
+            cout << list.getValue(i) << ", ";
+        }
+        cout << endl;
 
-    cout << "Clear list, then add range {5,6,7,8}...\n";
-    list.clear();
-    list.addRange({ 5,6,7,8 });
-    list.print();
+        cout << "Clear list, then add range {5,6,7,8}...\n";
+        list.clear();
+		int a[] = { 5,6,7,8 };
+		int n = sizeof(a) / sizeof(a[0]);
+        list.addRange(a, n);
+        list.print();
 
-    cout << "InsertAfter(9, node(3))...\n";
-    list.insertAfter(9, list.getNode(3)); // 5 6 7 8 9
-    list.print();
-	cout << "Remove(node(3))...\n";
-	list.remove(list.getNode(3)); 
-    
-    cout << "InsertBefore(4, node(0))...\n";
-    list.insertBefore(4, list.getNode(0));
-    list.print();
+        cout << "InsertAfter(9, node(3))...\n";
+        list.insertAfter(9, list.getNode(3)); // 5 6 7 8 9
+        list.print();
+        cout << "Remove(node(3))...\n";
+        list.remove(list.getNode(3));
 
-    cout << "RemoveAt(2)...\n";
-    list.removeAt(2); // remove index 2
-    list.print();
+        cout << "InsertBefore(4, node(0))...\n";
+        list.insertBefore(4, list.getNode(0));
+        list.print();
 
-    cout << "Add(9)...\n";
-    list.add(9);
-    list.print();
+        cout << "RemoveAt(2)...\n";
+        list.removeAt(2); // remove index 2
+        list.print();
 
-    cout << "RemoveAll(9)...\n";
-    list.removeAll(9);
-    list.print();
+        cout << "Add(9)...\n";
+        list.add(9);
+        list.print();
 
+        cout << "RemoveAll(9)...\n";
+        list.removeAll(9);
+        list.print();
+    }catch (const exception& e) {
+        cerr << "[Exception caught] " << e.what() << endl;
+	}
 
     getline(cin, temp);
     system("cls");
@@ -116,7 +121,7 @@ void testDoubleLinkedlist() {
 void testSinglyLinkedList() {
     cout << "=== Test Singly Linked List ===" << endl;
     SinglyLinkedList<int> list;
-
+try{
     cout << "Adding 10, 20...\n";
     list.add(10);
     list.add(20);
@@ -137,7 +142,9 @@ void testSinglyLinkedList() {
     list.print();
 
     cout << "AddRange({40, 50, 60})...\n";
-    list.addRange({ 40, 50, 60 });
+    int arr[] = {40,50,60};
+	int n = sizeof(arr) / sizeof(arr[0]);
+    list.addRange(arr, n);
     list.print();
 
     cout << "GetNode(2) and insert(25)...\n";
@@ -152,7 +159,10 @@ void testSinglyLinkedList() {
     cout << "Clear list...\n";
     list.clear();
     list.print();
-
+    }
+catch (const exception& e) {
+        cerr << "[Exception caught] " << e.what() << endl;
+}
     getline(cin, temp);
     system("cls");
 }
