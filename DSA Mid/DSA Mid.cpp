@@ -7,46 +7,59 @@ using namespace std;
 
 string temp;
 
+#include <iostream>
+#include <string>
+using namespace std;
+
 void testSearchTree() {
     cout << "=== Test Search Tree ===" << endl;
     BinarySearchTree<int> tree;
+    string temp;
 
-    cout << "Adding values: 10, 5, 15, 12, 20...\n";
-    tree.addValue(10);
-    tree.addValue(5);
-    tree.addValue(15);
-    tree.addValue(12);
-    tree.addValue(20);
+    try {
+        cout << "Adding values: 10, 5, 15, 12, 20...\n";
+        tree.addValue(10);
+        tree.addValue(5);
+        tree.addValue(15);
+        tree.addValue(12);
+        tree.addValue(20);
 
-    cout << "In-order traversal: ";
-    tree.printInOrder(tree.root);
-    cout << endl;
+        cout << "In-order traversal: ";
+        tree.printInOrder(tree.root);
+        cout << endl;
 
-    cout << "Check existence: \n";
-    cout << "Has 12? " << (tree.has(12) ? "Yes" : "No") << endl;
-    cout << "Has 7? " << (tree.has(7) ? "Yes" : "No") << endl;
+        cout << "Check existence: \n";
+        cout << "Has 12? " << (tree.has(12) ? "Yes" : "No") << endl;
+        cout << "Has 7? " << (tree.has(7) ? "Yes" : "No") << endl;
 
-    cout << "\nRemove leaf (20)...\n";
-    tree.removeValue(20);
-    tree.printInOrder(tree.root);
-    cout << endl;
+        cout << "\nRemove leaf (20)...\n";
+        tree.removeValue(20);
+        tree.printInOrder(tree.root);
+        cout << endl;
 
-    tree.addValue(20);
-    cout << "\nRemove node with 1 child (15)...\n";
-    tree.removeValue(15);
-    tree.printInOrder(tree.root);
-    cout << endl;
+        tree.addValue(20);
+        cout << "\nRemove node with 1 child (15)...\n";
+        tree.removeValue(15);
+        tree.printInOrder(tree.root);
+        cout << endl;
 
-    cout << "\nRemove node with 2 children (10)...\n";
-    tree.removeValue(10);
-    tree.printInOrder(tree.root);
-    cout << endl;
+        cout << "\nRemove node with 2 children (10)...\n";
+        tree.removeValue(10);
+        tree.printInOrder(tree.root);
+        cout << endl;
 
-    cout << "\nClearing tree...\n";
-    tree.clear();
+        cout << "\nClearing tree...\n";
+        tree.clear();
+    }
+    catch (const exception& e) {
+        cerr << "[Exception caught] " << e.what() << endl;
+    }
+
+    // dừng màn hình chờ nhập Enter
     getline(cin, temp);
     system("cls");
 }
+
 
 void testDoubleLinkedlist() {
     cout << "=== Test Double Linked List ===" << endl;

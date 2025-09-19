@@ -1,5 +1,8 @@
 #include "Node.h"
+#include <iostream>
+#include <stdexcept>
 using namespace std;
+
 template <typename T>
 struct BinarySearchTree {
     TreeNode<T>* root = nullptr;
@@ -12,7 +15,7 @@ struct BinarySearchTree {
         else {
             TreeNode<T>* foundNode = search(value, root);
             if (foundNode->value == value) {
-                return; // tránh trùng
+                throw runtime_error("Duplicate value not allowed in BST");
             }
             TreeNode<T>* newNode = new TreeNode<T>;
             newNode->value = value;
@@ -24,11 +27,14 @@ struct BinarySearchTree {
             }
         }
     }
+
     void addValues(T* value, int size) {
+        if (!value) throw invalid_argument("Input array is null");
         for (int i = 0; i < size; i++) addValue(value[i]);
     }
 
     TreeNode<T>* search(T value, TreeNode<T>* curNode) {
+        if (!curNode) throw runtime_error("Search on null node!");
         if (value > curNode->value) {
             if (curNode->right != nullptr) {
                 return search(value, curNode->right);
@@ -43,29 +49,43 @@ struct BinarySearchTree {
     }
 
     TreeNode<T>* search(T value) {
+        if (!root) throw runtime_error("Tree is empty");
         TreeNode<T>* node = search(value, root);
         if (node != nullptr && node->value == value) {
             return node;
         }
-        return nullptr;
+        throw runtime_error("Value not found in BST");
     }
+
     void clear(TreeNode<T>* node) {
         if (node == nullptr) return;
         clear(node->left);
         clear(node->right);
         delete node;
     }
+
     void clear() {
         clear(root);
+        root = nullptr;
     }
+
     bool has(T v) {
-        return search(v);
+        try {
+            return search(v) != nullptr;
+        }
+        catch (...) {
+            return false;
+        }
     }
+
     void removeValue(T v) {
+        if (!root) throw runtime_error("Tree is empty");
         root = removeValue(root, v);
     }
+
     TreeNode<T>* removeValue(TreeNode<T>* node, T v) {
-        if (!node) return nullptr;
+        if (!node) throw runtime_error("Value not found in BST");
+
         if (v < node->value) {
             node->left = removeValue(node->left, v);
             return node;
@@ -75,15 +95,12 @@ struct BinarySearchTree {
             return node;
         }
 
-        //Found node
-
-        //Ko co con
+        // Found node
         if (!node->left && !node->right) {
             delete node;
             return nullptr;
         }
 
-        //Co 1 con
         if (!node->left) {
             TreeNode<T>* temp = node->right;
             delete node;
@@ -96,19 +113,17 @@ struct BinarySearchTree {
             return temp;
         }
 
-        //2 con
-
-        //Find leftMost
+        // 2 con
         TreeNode<T>* right = node->right;
         TreeNode<T>* leftMost = right;
         while (leftMost->left) leftMost = leftMost->left;
 
-        //Gan node->left vao leftMost
         leftMost->left = node->left;
 
         delete node;
         return right;
     }
+
     void printInOrder(TreeNode<T>* node) {
         if (!node) return;
         printInOrder(node->left);
