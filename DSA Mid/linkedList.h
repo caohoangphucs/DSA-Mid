@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "Node.h"
-#include <vector>
 #include <iostream>
 using namespace std;
 
