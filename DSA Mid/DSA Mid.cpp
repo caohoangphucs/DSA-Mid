@@ -91,48 +91,48 @@ void testSinglyLinkedList() {
 }
 
 void testHashTable() {
-    // Tạo bảng băm cho kiểu int
     HashTable<int> ht;
 
-    // Thêm dữ liệu
     ht.add("one", 1);
     ht.add("two", 2);
     ht.add("three", 3);
 
-    // Lấy và in ra
-    auto v1 = ht.getValue("one");
-    if (v1.has_value()) {
-        cout << "\"one\" = " << v1.value() << endl;
-    }
-    else {
-        cout << "\"one\" not found" << endl;
+    // In toàn bộ bảng
+    cout << "=== HashTable===" << endl;
+    ht.print();
+
+    // Lấy và in ra giá trị theo key
+    for (auto key : { "one", "two", "three", "four" }) {
+        auto v = ht.getValue(key);
+        if (v.has_value()) {
+            cout << "\"" << key << "\" = " << v.value() << endl;
+        }
+        else {
+            cout << "\"" << key << "\" not found" << endl;
+        }
     }
 
+    // Tìm key theo value
+    auto k1 = ht.getKey(2);
+    if (k1.has_value()) {
+        cout << "Key for value 2: \"" << k1.value() << "\"" << endl;
+    }
+    else {
+        cout << "Not found key for value 2" << endl;
+    }
+
+    // Xóa một phần tử
+    ht.remove("two");
+    cout << "\n=== After remove \"two\" ===" << endl;
+    ht.print();
+
+    // Thử lấy lại key vừa xóa
     auto v2 = ht.getValue("two");
-    if (v2.has_value()) {
-        cout << "\"two\" = " << v2.value() << endl;
-    }
-    else {
-        cout << "\"two\" not found" << endl;
-    }
-
-    auto v3 = ht.getValue("three");
-    if (v3.has_value()) {
-        cout << "\"three\" = " << v3.value() << endl;
-    }
-    else {
-        cout << "\"three\" not found" << endl;
-    }
-
-    // Kiểm tra một key không tồn tại
-    auto v4 = ht.getValue("four");
-    if (v4.has_value()) {
-        cout << "\"four\" = " << v4.value() << endl;
-    }
-    else {
-        cout << "\"four\" not found" << endl;
+    if (!v2.has_value()) {
+        cout << "Not found \"two\"" << endl;
     }
 }
+
 int main() {
     testSearchTree();
 	testDoubleLinkedlist();

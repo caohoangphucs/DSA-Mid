@@ -8,10 +8,12 @@ using namespace std;
 template <typename T>
 struct Item {
     int hash;
+    string key;
     T value;
 
-    Item(int hash, T value) {
+    Item(int hash,string key, T value) {
         Item::hash = hash;
+        Item::key = key;
         Item::value = value;
     }
 
@@ -36,7 +38,17 @@ struct ItemList {
         values[right] = v;
     }
 
+    void clear() {
+        right = -1;
+    }
 
+    void removeAt(int ind) {
+        if (ind < 0 || ind > right) return;
+        for (int i = ind; i < right; i++) {
+            values[i] = values[i + 1];
+        }
+        right--;
+    }
 };
 template <typename T>
 struct HashTable {
@@ -54,10 +66,12 @@ struct HashTable {
     }
 
     optional<T>  getValue(string key) {
+       
         int h = hash(key);
         int ind = h % k;
+        
+        for (int i = table[ind].getSize() - 1; i >= 0; i--) {
 
-        for (int i = 0; i < table[ind].getSize(); i++) {
             Item<T> v = table[ind].getItem(i);
             if (v.hash == h) {
                 return v.value;
@@ -67,10 +81,53 @@ struct HashTable {
         return {};
     }
 
+    void clear() {
+        for (int i = 0; i < k; i++) {
+            table[i].clear();
+        }
+    }
+
     void add(string key, T value) {
         int h = hash(key);
         int ind = h % k;
-        table[ind].add(Item<T>(h, value));
+        table[ind].add(Item<T>(h,key, value));
     }
+
+    
+    void print() {
+        for (int i = 0; i < k; i++) {
+            cout << "Bucket " << i << ": ";
+            for (int j = 0; j < table[i].getSize(); j++) {
+                cout << "(" << table[i].values[j].key << ", "
+                    << table[i].values[j].value << ") ";
+            }
+            cout << endl;
+        }
+    }
+
+
+    void remove(string key) {
+        int h = hash(key);
+        int ind = h % k;
+
+        for (int i = 0; i < table[ind].getSize(); i++) {
+            if (table[ind].values[i].hash == h) {
+                table[ind].removeAt(i);
+                return;
+            }
+        }
+    }
+
+    optional<string> getKey(T value) {
+        for (int i = 0; i < k; i++) {
+            for (int j = 0; j < table[i].getSize(); j++) {
+                if (table[i].values[j].value == value) {
+                    return table[i].values[j].key;
+                }
+            }
+        }
+        return {};
+    }
+
 };
 
